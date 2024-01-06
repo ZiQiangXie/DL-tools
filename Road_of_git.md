@@ -56,6 +56,8 @@ git branch -a                         # 查看所有分支
 
 git remote add 主机名  网址        # 添加远程主机
 
+eg:  git remote add gitee https://gitee.com/xzq1392/LLM-Study.git
+
 git remote rm 主机名          # 删除远程主机
 
 git remote rename  原主机名   新主机名        # 修改远程主机名称
