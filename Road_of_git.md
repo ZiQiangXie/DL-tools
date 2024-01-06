@@ -324,11 +324,15 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 gnutls_handshake() failed: The TLS connection was non-properly terminated.
 
-执行：
+方法一：执行
 
 git config --global  --unset https.https://github.com.proxy
 
 git config --global  --unset http.https://github.com.proxy
+
+方法二：
+
+采用ssh的方式设置远程仓库名，参考git remote add xxx命令的用法。好像是可以，反正设置后试着推送几次都正常。
 
  
 
