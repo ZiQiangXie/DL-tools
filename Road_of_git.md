@@ -256,6 +256,10 @@ git push 更新到分支
 
 
 
+git pull origin main
+
+
+
 关于分支处理
 
 git merge用途
@@ -395,7 +399,6 @@ git remote add upstream https://github.com/PaddlePaddle/PaddleDetection.git
 12 https://blog.csdn.net/xiecheng1995/article/details/106570059
 
 13 https://blog.csdn.net/yilovexing/article/details/107226141
-
 
 
 
