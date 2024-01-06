@@ -6,8 +6,6 @@ Road_of_git
 
 
 
-
-
 安装git
 
 全局配置
@@ -312,13 +310,41 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 
 
+删除fork的项目，点击setting，下拉到最后，找到delete this repo，输入项目名称，即可删除
+
+ 
+
+gnutls_handshake() failed: The TLS connection was non-properly terminated.
+
+执行：
+
+git config --global  --unset https.https://github.com.proxy
+
+git config --global  --unset http.https://github.com.proxy
+
+ 
+
+提交pr：
+
+Fork到自己的仓库  # 注意分支，有个勾选，会只fork一个分支，可以取消勾选；
+
+git clone到本地   # 注意分支
+
+创建新分支，并修改文件
+
+上传到自己的仓库中，在创建的分支；
+
+打开远程仓库就会自动看见pr提示或者自己create也行。。
+
+可能需要建立本地和fork源项目的联系。通过git remote -v查看。
+
+git remote add upstream https://github.com/PaddlePaddle/PaddleDetection.git
 
 
 
+更新同步fork的项目
 
-
-
-
+在fork的项目有个sync fork
 
 
 
