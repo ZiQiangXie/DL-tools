@@ -256,7 +256,7 @@ git push 更新到分支
 
 
 
-git pull origin main
+git pull origin main   拉取指定远程仓库的指定分支
 
 
 
