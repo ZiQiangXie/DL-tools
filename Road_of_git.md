@@ -32,6 +32,10 @@ git init                                    # 初始化git，新建空项目文�
 
 git branch                             # 查看分支，前面带*的就是当前所在分支；
 
+git branch -r                         # 查看远程分支
+
+git branch -a                         # 查看所有分支
+
 git branch abc                      # 从主分支分出为abc的分支；
 
 git branch –d abc                # 删除abc分支，不能删除当前所在分支，需切换到其他分支再删除；
@@ -48,15 +52,13 @@ git remote –v                       # 查看有几个远程仓库；
 
 git remote show origin      # 查看某个远程仓库的具体信息，以origin为例
 
-
-
-git branch -r                         # 查看远程分支
-
-git branch -a                         # 查看所有分支
-
-git remote add 主机名  网址        # 添加远程主机
+git remote add 远程仓库名  网址        # 添加远程主机
 
 eg:  git remote add gitee https://gitee.com/xzq1392/LLM-Study.git
+
+​       git remote add origin git@github.com:bertilchan/gitTest.git   #ssh的方式
+
+​       git remote add gitee git@gitee.com:bertil/git-test.git 
 
 git remote rm 主机名          # 删除远程主机
 
@@ -66,17 +68,17 @@ git remote rename  原主机名   新主机名        # 修改远程主机名称
 
 github 下载提交操作
 
-git clone URL     # 从GitHub上下载工程到本地，URL 是工程的网址，后加.git；
+git clone [-b main] URL     # 从GitHub上下载工程到本地，URL 是工程的网址，后加.git；
 
 git add .              # 添加修改到缓存区，点表示当前路径所有，也可指定文件和路径，有多个时列出，空格隔开；
 
 git commit -m "modify readme"    # 添加修改的注释说明；
 
-git remote add origin URL   # 建立URL的origin，相当于是个别名，如果已有，则不需要执行；
+#git remote add origin URL   # 建立URL的origin，相当于是个别名，如果已有，则不需要执行；
 
-如果遇到报错fatal: 远程 origin 已经存在，执行：git remote rm origin
+#如果遇到报错fatal: 远程 origin 已经存在，执行：git remote rm origin
 
-git push -u origin main    # 推送到主干的main分支，也有的是master分支，注意区分；
+#git push -u origin main    # 推送到主干的main分支，也有的是master分支，注意区分；
 
 提示输入用户名和密码，输入完成即可。
 
@@ -309,6 +311,10 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 2）关联后第一次commit时，仍需要设置用户名和邮箱，如果GitHub和gitee用户名和邮箱不同，设置任意一个即可，实际push时仍是各自的账号。
 
 3）ssh-add添加rsa识别时，可通过ssh-add -l查看添加后的结果。
+
+4）设置远程仓库名时优先选择ssh，可以避免每次push时输入账号和密码。
+
+
 
 
 
