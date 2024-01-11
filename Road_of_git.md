@@ -86,6 +86,18 @@ git commit -m "modify readme"    # 添加修改的注释说明；
 
 
 
+GitHub新建空项目，不要readme，要readme也行，就不用新建了毕竟有几个github项目没有readme呢；
+
+然后本地新建文件夹test，作为项目的本地地址；
+
+进入文件夹，执行：
+
+git init   #初始化一个git
+
+ls –a    # 可以查看有个.git文件夹
+
+然后将项目文件拷贝到test，然后就可以按照修改提交的方式提交更新。
+
 
 
 删除github的文件夹或文件
@@ -107,6 +119,39 @@ git commit -m “del target”
 git remote add origin URL
 
 git push origin main
+
+
+
+生成秘钥
+
+ssh-keygen -t rsa -C [xieziqiang1392@163.com](mailto:xieziqiang1392@163.com)
+
+然后连续两个回车即可
+
+![github_miyao](Road_of_git.assets/github_miyao.jpg)
+
+查看：
+
+ls ~/.ssh/    #有id_rsa和id_rsa.pub两个文件
+
+cat .ssh/id_rsa   #可看到秘钥，
+
+cat .ssh/id_rsa.hub   #可看到公钥
+
+登录自己的GitHub，点击右上角的头像，在下拉菜单中点击setting，打开后在左侧栏中找到SSH and GPG keys，
+
+点击右上角的New SSH key，然后在Title栏给秘钥命名，随便写，在Key中粘贴上一步的秘钥，最后点击Add SSH
+key。
+
+查看是否连接成功：
+
+ssh –T [git@github.com](mailto:git@github.com)
+
+如果显示cannot be established，让输入yes/no，输入yes回车；
+
+如果出现You've successfully authenticated, but GitHub does not provide shell access.则说明连接成功。
+
+
 
 
 
