@@ -301,7 +301,7 @@ git push 更新到分支
 
 
 
-git pull origin main   拉取指定远程仓库的指定分支
+git pull origin main 拉取指定远程仓库的指定分支
 
 
 
@@ -347,6 +347,8 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 
 
+
+
 一个本地项目同时关联GitHub和gitee
 
 参考10-13
@@ -360,6 +362,8 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 3）ssh-add添加rsa识别时，可通过ssh-add -l查看添加后的结果。
 
 4）设置远程仓库名时优先选择ssh，可以避免每次push时输入账号和密码。例如origin和gitee，确保先配置公钥，然后删除已有的，重新配置。
+
+
 
 
 
@@ -440,6 +444,7 @@ git remote add upstream https://github.com/PaddlePaddle/PaddleDetection.git
 12 https://blog.csdn.net/xiecheng1995/article/details/106570059
 
 13 https://blog.csdn.net/yilovexing/article/details/107226141
+
 
 
 
