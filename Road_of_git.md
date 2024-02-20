@@ -347,8 +347,6 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 
 
-
-
 一个本地项目同时关联GitHub和gitee
 
 参考10-13
@@ -361,9 +359,7 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 3）ssh-add添加rsa识别时，可通过ssh-add -l查看添加后的结果。
 
-4）设置远程仓库名时优先选择ssh，可以避免每次push时输入账号和密码。例如origin和gitee，确保先配置公钥，然后删除已有的，重新配置。
-
-
+4）设置远程仓库名时优先选择ssh，可以避免每次push时输入账号和密码。例如origin和gitee，确保先配置公钥，然后删除已有的远程仓库关联然后重新配置。
 
 
 
