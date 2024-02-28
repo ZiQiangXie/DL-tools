@@ -12,10 +12,6 @@ tar -xvJf  xxxx.tar.xz    # .xz结尾是打包后再压缩的文件，外面是x
 
 
 
-
-
-
-
 开启代理：
 
 安装软件tinyproxy：sudo apt-get install tinyproxy
@@ -273,3 +269,49 @@ conda remove -p /home/root/env2 --all
 conda remove -n your_env_name --all
 
 conda env remove --name your_env_name
+
+
+
+各种源地址：
+
+https://mirrors.aliyun.com/pypi/simple/
+
+https://pypi.tuna.tsinghua.edu.cn/simple/
+
+https://mirror.baidu.com/pypi/simple
+
+https://mirrors.cloud.tencent.com/pypi/simple
+
+pip install xxx -i Դ
+
+https://paddlepaddle.org.cn/whl/mkl/stable.html
+https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+
+torch、torchvision：https://download.pytorch.org/whl/torch_stable.html
+
+mmcv:
+
+https://github.com/open-mmlab/mmcv/issues/1818
+
+https://download.openmmlab.com/mmcv/dist/cu92/torch1.7.0/index.html
+
+替换cu92、torch1.7.0，可以对应下载版本；
+
+
+
+解决libstdc++.so.6: version `GLIBCXX_3.4.22' not found
+
+虚拟环境中安装库时报错，可先找找对应的库，看看版本是否包含；
+strings path/anaconda3/envs/tensorflow/lib/libstdc++.so.6 |grep GLIBCXX  
+
+下载一个  http://ftp.de.debian.org/debian/pool/main/g/
+或者取其他服务器拷贝一个
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25   先找一下对应的版本；
+
+cp libstdc++.so.6.0.25  path/anaconda3/envs/tensorflow/lib/
+
+cd ~/anaconda3/envs/tensorflow/lib/
+
+rm libstdc++.so.6
+
+ln libstdc++.so.6.0.25 libstdc++.so.6
