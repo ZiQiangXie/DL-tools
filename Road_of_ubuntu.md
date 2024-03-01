@@ -1,6 +1,6 @@
 Road_of_ubuntu
 
-linux命令
+### linux命令
 
 解压tar
 
@@ -12,7 +12,7 @@ tar -xvJf  xxxx.tar.xz    # .xz结尾是打包后再压缩的文件，外面是x
 
 
 
-开启代理：
+### 代理相关
 
 安装软件tinyproxy：sudo apt-get install tinyproxy
 
@@ -34,7 +34,7 @@ Allow 127.0.0.1                # 将127.0.0.1改成你自己的IP
 
 
 
-使用代理：
+使用代理
 
 vi ~/.bashrc
 
@@ -49,11 +49,9 @@ source ~/.bashrc
 
 
 
-nccl安装
+### nccl安装
 
 sudo apt install libnccl2=2.11.4-1+cuda10.2 libnccl-dev=2.11.4-1+cuda10.2
-
-
 
 环境问题：
 
@@ -70,7 +68,7 @@ python setup.py build install
 
 
 
-低版本gcc安装
+### 低版本gcc安装
 
 gcc-4
 
@@ -109,13 +107,15 @@ which gcc
 
 https://blog.csdn.net/uniqueyyc/article/details/85407693
 
+### Cmake
+
+![cmake安装更新](Road_of_ubuntu.assets/cmake安装更新.jpg)
 
 
 
+### CUDA相关
 
-CUDA相关
-
-安装cuda指定位置。
+#### 1 安装cuda指定位置
 
 sudo sh ./cuda_10.2.89_440.33.01_linux.run --toolkitpath=/home/xieziqiang/cuda/cuda-10.2/ --toolkit --silent
 
@@ -130,9 +130,7 @@ sudo cp cuda/include/cudnn.h /home/xieziqiang/cuda/cuda-10.2/include
 
 参考：https://blog.csdn.net/kxqt233/article/details/113825524
 
-
-
-cuda卸载
+#### 2 cuda卸载
 
 卸载的实现方法
 那么如何正确、完全的卸载cuda呢？
@@ -161,7 +159,7 @@ sudo rm -rf /usr/local/cuda-xx.x
 所以如果自己要卸载的cuda没有配置cudnn，那么cuda-xx.x文件夹在卸载完成后会被自动删除，也就没必要再运行最后一句了。
 【参考】https://blog.csdn.net/weixin_44711603/article/details/110233047
 
-
+#### 3 常见报错
 
 错误： fatal error: cuda_runtime.h: 没有那个文件或目录
 
@@ -214,7 +212,7 @@ https://blog.csdn.net/BetrayFree/article/details/132598503?spm=1001.2101.3001.66
 
 
 
-TensorRT安装
+### TensorRT安装
 
 官网下载，需要登录。注意查看与cuda和cudnn的匹配关系。
 
@@ -230,9 +228,139 @@ https://blog.csdn.net/IAMoldpan/article/details/117908232
 
 
 
-conda相关
+### conda相关
 
-跨服务器迁移conda虚拟环境
+#### 1 安装
+
+在Miniconda官方网站上查询并下载最新版本的miniconda3：Miniconda3-latest-Linux-x86_64.sh
+
+修改权限：chmod 777 Miniconda3-latest-Linux-x86_64.sh
+
+注意：如果是ubuntu多用户使用，需要切换到root用户下安装，如果只是自己使用，则可以在自己账户下安装。
+
+安装执行：./Miniconda3-latest-Linux-x86_64.sh
+
+提示1：Welcome to Miniconda3 py38_4.9.2，Please，press ENTER to continue等；
+
+直接按回车键即可。然后出现很多license，连续按空格或回车键，向下翻页。
+
+提示2：Do you accept the license terms? (yes | no)
+
+输入yes，然后回车。
+
+提示3：Miniconda3 will now be installed into this location: /home/root/miniconda3
+
+​                 \- Press ENTER to confirm the location
+
+​                 \- Press CTRL-C to abort the installation
+
+​                 \- Or specify a different location below
+
+​             [/home/root/miniconda30] >>>
+
+此处是提示安装位置，默认是用户名下，可以直接回车即可，如果想更改，可以在>>>之后，直接输入新的路径再回车；
+
+提示4：Do you wish the installer to initialize Miniconda3 yb running conda init? [yes | no]
+
+此处安装程序会提示进行miniconda的初始化。
+
+如果填yes，则此后每次启动terminal时，conda均可生效自动进入conda环境。
+
+如果不需要初始化则填no，此后需要使用conda时，需要自行启动conda。
+
+如果安装时选择了yes，那么之后也可以使用以下命令取消。
+
+conda config --set auto_activate_base false
+
+#### 2 自行启动方法
+
+进入安装位置，cd 到miniconda3文件夹的bin目录中，可以看到一个activate文件；
+
+cd miniconda3/bin/
+
+修改activate的权限：chmod 777 activate
+
+启动：source ./activate 或者 . ./activate；
+
+可以看到命令行前面出现了（base）字样，就说明已经进入了conda环境中了。
+
+#### 3 更改国内源
+
+打开vim ~/.condarc，
+
+填入：
+
+channels:
+
+  \- defaults
+
+show_channel_urls: true
+
+default_channels:
+
+  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/main
+
+  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/free
+
+  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/r
+
+  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/pro
+
+  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2
+
+custom_channels:
+
+  conda-forge: https://mirrors.bfsu.edu.cn/anaconda/cloud
+
+  msys2: https://mirrors.bfsu.edu.cn/anaconda/cloud
+
+  bioconda: https://mirrors.bfsu.edu.cn/anaconda/cloud
+
+  menpo: https://mirrors.bfsu.edu.cn/anaconda/cloud
+
+  pytorch: https://mirrors.bfsu.edu.cn/anaconda/cloud
+
+  simpleitk: https://mirrors.bfsu.edu.cn/anaconda/cloud
+
+#### 4 创建虚拟环境
+
+conda create –n env_name python=3.7   # 创建名字为env_name的环境且指定python版本为3.7（可不指定python版本，可能默认是base的版本）；
+
+conda create –n env_name --offline   # 离线创建环境，不指定版本
+
+conda create –n env_name --clone base  # 复制base环境，创建新环境（离线断网时比较方便）；
+
+conda remove –n env_name --all    删除虚拟环境
+
+激活/切换环境：
+
+conda activate env_name
+
+退出环境：
+
+conda deactivate
+
+查看已有的环境：
+
+conda info –e 或 conda env list
+
+所列的环境中，最前面有个*的，表示当前所在的环境；
+
+查看当前环境安装的包：
+
+pip list  或者 conda list
+
+获取版本号：conda --version 或 conda –V
+
+安装python包：
+
+pip install pkg_name==xxx –i https:xxxxx    # 在线安装
+
+和其他环境安装一样，==是指定版本，默认最新版，-i 参数指定源，可不指定；
+
+pip install pkg_name   # 离线安装下载好的包；
+
+#### 5 迁移虚拟环境
 
 1）将源环境拷贝到新服务器的任意位置
 
@@ -258,8 +386,6 @@ conda create -p /home/root/env2 --clone env1
 
 【参考】https://blog.csdn.net/zhouhy0903/article/details/127621869
 
-
-
 如果新建的环境变量没有名字，如通过-p指定路径的环境，可以删除。
 
 conda remove -p /home/root/env2 --all
@@ -272,7 +398,7 @@ conda env remove --name your_env_name
 
 
 
-各种源地址：
+### 各种源地址
 
 https://mirrors.aliyun.com/pypi/simple/
 
@@ -298,6 +424,10 @@ https://download.openmmlab.com/mmcv/dist/cu92/torch1.7.0/index.html
 替换cu92、torch1.7.0，可以对应下载版本；
 
 
+
+
+
+### 系统库报错
 
 解决libstdc++.so.6: version `GLIBCXX_3.4.22' not found
 
