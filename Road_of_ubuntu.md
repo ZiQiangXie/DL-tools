@@ -40,8 +40,10 @@ vi ~/.bashrc
 
 添加：
 
-export http_proxy="http://10.20.20.131:1392"
-export https_proxy="http://10.20.20.131:1392"
+export http_proxy="http://192.168.0.1:8888"
+export https_proxy="http://192.168.0.1:8888"
+
+将192.168.0.1改成设置代码的服务器，8888改成设置的端口；
 
 source ~/.bashrc
 
@@ -115,22 +117,109 @@ https://blog.csdn.net/uniqueyyc/article/details/85407693
 
 ### CUDA相关
 
-#### 1 安装cuda指定位置
+#### 1 安装
 
-sudo sh ./cuda_10.2.89_440.33.01_linux.run --toolkitpath=/home/xieziqiang/cuda/cuda-10.2/ --toolkit --silent
+chmod 777 cuda_11.7.0_515.43.04_linux.run    # 修改权限
 
-安装cudnn
+./cuda_11.7.0_515.43.04_linux.run                # 安装命令
+
+若提示：Existing package manager installation of the driver found. It is strongly recommended that you remove this before continuing
+
+按向下箭头，选择continue然后回车即可；
+
+提示：Do you accept the above EULA？
+
+输入：accept，再回车；
+
+进入CUDA Installer界面。
+
+光标移动到Driver行，回车，即可将[X]中的X去掉，表示不选择，不安装驱动，因为驱动提前已经装过了；
+
+CUDA Demo Suite 11.7和CUDA Documentation 11.7，这两项可选，文档和demo一般没啥用，可以回车去掉X，当然安装也行；
+
+如果不需要改变安装位置等细节，直接向下移动光标到Install，回车安装即可；
+
+如果需要修改则移动到Options，回车，进入Options界面；
+
+Driver Options：无需操作；
+
+Library install path (Blank for system default)：无需操作；
+
+移动光标到Tookit Options然后回车，进入CUDA Toolkit界面；
+
+Change Toolkit Install Path：回车后即可修改安装位置；
+
+Create symbolic link from /usr/local/cuda： 是否建立软连接到系统cuda位置，默认是创建的。但是如果是多cuda共存，就不要建立。回车把X去掉；
+
+Create desktop menu shortcuts：在No的行回车，选择No，不创建桌面快捷方式；
+
+Install manpage documents to /usr/share/man：是否安装用户手册，可以去掉X不安装，可选；
+
+然后移动到Done，退出当前界面，回到上一级；
+
+再移动到Done退出Options界面，回到CUDA Installer界面，再移动到Install回车即可安装；
+
+安装完成后提示如下：
+
+Driver:   Not Selected
+Toolkit:  Installed in /path/to/cuda-11.7/
+
+Please make sure that
+ -   PATH includes /path/to/cuda-11.7/bin
+ -   LD_LIBRARY_PATH includes /path/to/cuda-11.7/lib64, or, add /path/to/cuda-11.7/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run cuda-uninstaller in /path/to/cuda-11.7/bin
+***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 515.00 is required for CUDA 11.7 functionality to work.
+To install the driver using this installer, run the following command, replacing <CudaInstaller> with the name of this run file:
+    sudo <CudaInstaller>.run --silent --driver
+
+提示说明：
+
+Driver：Not Selected，没问题，本来就没选，驱动是提前自己装的；
+
+提示将bin和lib64的路径添加到环境变量，需要添加；
+
+提示卸载方法：run cuda-uninstaller in /path/to/cuda-11.7/bin
+
+WARNING还在提示如何安装驱动，忽略即可；
+
+添加环境变量：
+
+vim ~/.bashrc，在最后添加：
+
+```python
+export LD_LIBRARY_PATH=/path/to/cuda-11.7/lib64:$LD_LIBRARY_PATH
+export PATH=/path/to/cuda-11.7/bin:$PATH
+```
+
+保存退出后激活一下，source ~/.bashrc
+
+然后执行nvcc -V，可以看到相关信息的输出。如果提示Command 'nvcc' not found，那就麻烦了。说明哪一步有错误，但是一般不会，有错的话上面的步骤不会完整执行下去，会提前报错了。
+
+#### 2 安装cuda指定位置
+
+sudo sh ./cuda_10.2.89_440.33.01_linux.run --toolkitpath=/path/to/cuda/cuda-10.2/ --toolkit --silent
+
+#### 3 安装cudnn
 
 老版本cudnn下载。
 
 https://developer.nvidia.cn/rdp/cudnn-archive
 
-sudo cp cuda/lib64/* /home/xieziqiang/cuda/cuda-10.2/lib64
-sudo cp cuda/include/cudnn.h /home/xieziqiang/cuda/cuda-10.2/include
+下载后解压缩，假设名字为cudnn_path。
+
+sudo cp cudnn_path/lib64/*  /path/to/cuda-10.2/lib64
+sudo cp cudnn_path/include/cudnn.h  /path/to/cuda-10.2/include
+
+其实就是将cudnn解压出来的文件，拷贝到cuda安装的路径里面；
+
+如果没改过cuda的安装路径，默认是/usr/local/cuda或者/usr/local/cuda-xx，xx表示版本号；
+
+cudnn8.6等高版本，不是lib64，而是lib，根据版本情况区分即可；
 
 参考：https://blog.csdn.net/kxqt233/article/details/113825524
 
-#### 2 cuda卸载
+#### 3 cuda卸载
 
 卸载的实现方法
 那么如何正确、完全的卸载cuda呢？
@@ -256,7 +345,7 @@ https://blog.csdn.net/IAMoldpan/article/details/117908232
 
 ​                 \- Or specify a different location below
 
-​             [/home/root/miniconda30] >>>
+​             [/path/to/miniconda3] >>>
 
 此处是提示安装位置，默认是用户名下，可以直接回车即可，如果想更改，可以在>>>之后，直接输入新的路径再回车；
 
@@ -264,7 +353,7 @@ https://blog.csdn.net/IAMoldpan/article/details/117908232
 
 此处安装程序会提示进行miniconda的初始化。
 
-如果填yes，则此后每次启动terminal时，conda均可生效自动进入conda环境。
+如果填yes，则此后每次启动terminal时，conda均可生效自动进入conda环境（推荐）。
 
 如果不需要初始化则填no，此后需要使用conda时，需要自行启动conda。
 
@@ -280,33 +369,59 @@ cd miniconda3/bin/
 
 修改activate的权限：chmod 777 activate
 
-启动：source ./activate 或者 . ./activate；
+启动：source ./activate 或者 . ./activate 或者 . path/to/activate，采用相对路径；
 
 可以看到命令行前面出现了（base）字样，就说明已经进入了conda环境中了。
 
-#### 3 更改国内源
+#### 3 手动改自动
+
+打开~/.bashrc，在最后添加如下内容，保存退出后再source ~/.bashrc即可；
+
+```python
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/path/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/path/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/path/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/path/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
+
+注意：将path/tominiconda，改为自己安装的位置；
+
+#### 4 更改国内源
+
+搜一下，网上很多；
 
 打开vim ~/.condarc，
 
 填入：
 
+```python
 channels:
 
-  \- defaults
+  - defaults
 
 show_channel_urls: true
 
 default_channels:
 
-  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/main
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main
 
-  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/free
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/free
 
-  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/r
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r
 
-  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/pro
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/pro
 
-  \- https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2
 
 custom_channels:
 
@@ -321,8 +436,38 @@ custom_channels:
   pytorch: https://mirrors.bfsu.edu.cn/anaconda/cloud
 
   simpleitk: https://mirrors.bfsu.edu.cn/anaconda/cloud
+```
 
-#### 4 创建虚拟环境
+```python
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+```
+
+国内常用源：
+
+```python
+清华：https://mirrors.tuna.tsinghua.edu.cn/simple
+阿里云：http://mirrors.aliyun.com/pypi/simple/
+中国科技大学: https://pypi.mirrors.ustc.edu.cn/simple/
+豆瓣：http://pypi.douban.com/simple/
+```
+
+
+
+#### 5 创建虚拟环境
 
 conda create –n env_name python=3.7   # 创建名字为env_name的环境且指定python版本为3.7（可不指定python版本，可能默认是base的版本）；
 
@@ -360,7 +505,7 @@ pip install pkg_name==xxx –i https:xxxxx    # 在线安装
 
 pip install pkg_name   # 离线安装下载好的包；
 
-#### 5 迁移虚拟环境
+#### 6 迁移虚拟环境
 
 1）将源环境拷贝到新服务器的任意位置
 
