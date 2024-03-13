@@ -497,13 +497,17 @@ pip list  或者 conda list
 
 获取版本号：conda --version 或 conda –V
 
-安装python包：
+安装whl包：
 
 pip install pkg_name==xxx –i https:xxxxx    # 在线安装
 
 和其他环境安装一样，==是指定版本，默认最新版，-i 参数指定源，可不指定；
 
 pip install pkg_name   # 离线安装下载好的包；
+
+添加conda环境路径：conda config --append envs_dirs /home/xzq/conda_env/     # --remove  即可删除
+
+创建环境时通过python=3.xx，修改了默认的python版本后，进入环境可能发现python版本仍是默认版本，可以通过连续执行conda deactivate，完全退出所有环境（包括base），然后执行source path/to/miniconda3/bin/activate，激活环境，再进入试试；
 
 #### 6 迁移虚拟环境
 
@@ -540,6 +544,19 @@ conda remove -p /home/root/env2 --all
 conda remove -n your_env_name --all
 
 conda env remove --name your_env_name
+
+#### 7 mpi4py報錯
+
+ERROR: Could not build wheels for mpi4py, which is required to install pyproject.toml-based projects
+
+pip安装报错，可以尝试conda，解决方案：
+
+conda install mpi4py
+
+下面这个方案试了，无效；
+
+sudo apt update
+sudo apt-get install libopenmpi-dev
 
 
 
