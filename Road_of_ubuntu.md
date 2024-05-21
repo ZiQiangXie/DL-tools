@@ -55,6 +55,14 @@ source ~/.bashrc
 
 sudo apt install libnccl2=2.11.4-1+cuda10.2 libnccl-dev=2.11.4-1+cuda10.2
 
+下载和cuda匹配的版本：https://developer.nvidia.com/nccl/nccl-legacy-downloads
+
+可以通过Local installer下载deb直接本地安装，也可以通过Network installers在线安装。
+
+
+
+
+
 环境问题：
 
 ModuleNotFoundError: No module named ‘MultiScaleDeformableAttention‘
@@ -591,6 +599,8 @@ https://download.openmmlab.com/mmcv/dist/cu92/torch1.7.0/index.html
 
 ### 系统库报错
 
+#### libstdc++.so.6
+
 解决libstdc++.so.6: version `GLIBCXX_3.4.22' not found
 
 虚拟环境中安装库时报错，可先找找对应的库，看看版本是否包含；
@@ -607,3 +617,56 @@ cd ~/anaconda3/envs/tensorflow/lib/
 rm libstdc++.so.6
 
 ln libstdc++.so.6.0.25 libstdc++.so.6
+
+如果找不到或者系统中缺失该版本，可参考：
+
+https://blog.csdn.net/qq_40770277/article/details/134250871?spm=1001.2101.3001.6650.18&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-18-134250871-blog-126546521.235%5Ev43%5Epc_blog_bottom_relevance_base6&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-18-134250871-blog-126546521.235%5Ev43%5Epc_blog_bottom_relevance_base6&utm_relevant_index=24
+
+![libstdc++.so.6缺失](Road_of_ubuntu.assets/libstdc++.so.6缺失.jpg)
+
+find找到之后再拷贝到系统目录创建软连接。
+
+#### gcc-10-base libgcc-s1
+
+E: Package 'gcc-10-base' has no installation candidate
+
+https://packages.ubuntu.com/focal/amd64/gcc-10-base/download
+
+只要往您的 /etc/apt/sources.list 文件中像下面这样添加一行:
+
+deb http://security.ubuntu.com/ubuntu focal-security main 
+
+然后sudo apt-get update
+
+sudo apt-get install gcc-10-base
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
