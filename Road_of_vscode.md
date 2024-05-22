@@ -139,3 +139,8 @@ https://blog.csdn.net/weixin_44120025/article/details/118930038
 
 https://blog.csdn.net/weixin_42398658/article/details/121784380
 
+
+
+插件/扩展：
+
+历史版本下载参考：https://github.com/microsoft/vscode-python/discussions/20184
