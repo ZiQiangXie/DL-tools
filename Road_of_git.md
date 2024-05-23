@@ -56,7 +56,7 @@ git remote add 远程仓库名  网址        # 添加远程主机
 
 eg:  git remote add gitee https://gitee.com/xzq1392/LLM-Study.git
 
-​       git remote add origin git@github.com:bertilchan/gitTest.git   #ssh的方式
+​       git remote add origin git@github.com:bertilchan/gitTest.git   **# ssh的方式添加远程主机连接**
 
 ​       git remote add gitee git@gitee.com:bertil/git-test.git 
 
@@ -440,7 +440,6 @@ git remote add upstream https://github.com/PaddlePaddle/PaddleDetection.git
 12 https://blog.csdn.net/xiecheng1995/article/details/106570059
 
 13 https://blog.csdn.net/yilovexing/article/details/107226141
-
 
 
 
