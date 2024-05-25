@@ -364,9 +364,9 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 
 
-### 删除fork的项目
+### 删除的项目
 
-点击setting，下拉到最后，找到delete this repo，输入项目名称，即可删除
+在项目页面上面的导航栏最后，点击Setting，下拉到最后，找到delete this repo，输入项目名称，即可删除
 
  
 
