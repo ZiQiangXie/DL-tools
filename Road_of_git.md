@@ -6,7 +6,7 @@ Road_of_git
 
 
 
-安装git
+### 安装git
 
 全局配置
 
@@ -24,7 +24,7 @@ git config --global -l             # 查看是否取消成功，无输出即为�
 
 
 
-git 本地常用操作
+### git 本地常用操作
 
 git --version                          # 查看git版本
 
@@ -66,7 +66,7 @@ git remote rename  原主机名   新主机名        # 修改远程主机名称
 
 
 
-github 下载提交操作
+### github 下载提交操作
 
 git clone [-b main] URL     # 从GitHub上下载工程到本地，URL 是工程的网址，后加.git；
 
@@ -86,7 +86,9 @@ git commit -m "modify readme"    # 添加修改的注释说明；
 
 
 
-GitHub新建空项目，不要readme，要readme也行，就不用新建了毕竟有几个github项目没有readme呢；
+### GitHub新建空项目
+
+不要readme，要readme也行，就不用新建了毕竟有几个github项目没有readme呢；
 
 然后本地新建文件夹test，作为项目的本地地址；
 
@@ -100,7 +102,7 @@ ls –a    # 可以查看有个.git文件夹
 
 
 
-删除github的文件夹或文件
+### 删除github的文件夹或文件
 
 GitHub只能删除仓库，却不能删除文件或文件夹，只能通过远程命令解决；
 
@@ -122,7 +124,7 @@ git push origin main
 
 
 
-生成秘钥
+### 生成秘钥
 
 ssh-keygen -t rsa -C [xieziqiang1392@163.com](mailto:xieziqiang1392@163.com)
 
@@ -228,7 +230,7 @@ stream https://github.com/user1/repository.git(push)
 
 
 
-git中pull和fetch的区别是什么
+### git中pull和fetch的区别是什么
 
 Git fetch和git pull区别为：远端跟踪分支不同、拉取不同、commitID不同。
 
@@ -305,7 +307,7 @@ git pull origin main 拉取指定远程仓库的指定分支
 
 
 
-关于分支处理
+### 关于分支处理
 
 git merge用途
 
@@ -346,8 +348,7 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 
 
-
-一个本地项目同时关联GitHub和gitee
+### 一个本地项目同时关联GitHub和gitee
 
 参考10-13
 
@@ -363,11 +364,13 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 
 
 
-删除fork的项目，点击setting，下拉到最后，找到delete this repo，输入项目名称，即可删除
+### 删除fork的项目
+
+点击setting，下拉到最后，找到delete this repo，输入项目名称，即可删除
 
  
 
-gnutls_handshake() failed: The TLS connection was non-properly terminated.
+### gnutls_handshake() failed: The TLS connection was non-properly terminated.
 
 方法一：执行
 
@@ -381,7 +384,7 @@ git config --global  --unset http.https://github.com.proxy
 
  
 
-提交pr：
+### 提交pr
 
 Fork到自己的仓库  # 注意分支，有个勾选，会只fork一个分支，可以取消勾选；
 
@@ -399,7 +402,7 @@ git remote add upstream https://github.com/PaddlePaddle/PaddleDetection.git
 
 
 
-更新同步fork的项目
+### 更新同步fork的项目
 
 在fork的项目有个sync fork
 
