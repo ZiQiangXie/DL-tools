@@ -54,7 +54,7 @@ git remote show origin      # 查看某个远程仓库的具体信息，以origi
 
 git remote add 远程仓库名  网址        # 添加远程主机
 
-eg:  git remote add gitee https://gitee.com/xzq1392/LLM-Study.git
+eg:  git remote add gitee https://gitee.com/username/reponame.git
 
 ​       git remote add origin git@github.com:bertilchan/gitTest.git   **# ssh的方式添加远程主机连接**
 
@@ -126,7 +126,7 @@ git push origin main
 
 ### 生成秘钥
 
-ssh-keygen -t rsa -C [xieziqiang1392@163.com](mailto:xieziqiang1392@163.com)
+ssh-keygen -t rsa -C email@163.com
 
 然后连续两个回车即可
 
@@ -351,6 +351,49 @@ git push -u origin dev(这段指令根据项目的git实际库情况使用)
 ### 一个本地项目同时关联GitHub和gitee
 
 参考10-13
+
+ssh-keygen -t rsa -f ~/.ssh/id_rsa.github -C "email"
+
+ssh-keygen -t rsa -f ~/.ssh/id_rsa.gitee -C "email"
+
+连续回车两下。查看： ls ~/.ssh/
+
+会有：id_rsa.gitee       id_rsa.gitee.pub   id_rsa.github      id_rsa.github.pub
+
+vim ~/.ssh/config
+
+输入：
+
+```python
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa.github
+
+Host gitee.com
+    HostName gitee.com
+    User git
+    Port 22
+    IdentityFile ~/.ssh/id_rsa.gitee
+```
+
+登录GitHub和gitee。
+
+GitHub，右上角头像，Setting，SSH and GPG keys，New SSH key。
+
+Title：起个名字
+
+Key：输入~/.ssh/id_rsa.github.pub中的内容，粘贴过去。
+
+Gitee，右上角头像，账号设置，ssh公钥，添加公钥。
+
+标题：起个名字
+
+公钥：输入~/.ssh/id_rsa.gitee.pub中的内容，粘贴过去。然后需要输入密码验证。
+
+测试连接成功：ssh -T git@gitee.com   ssh -T git@github.com
+
+
 
 注：
 
