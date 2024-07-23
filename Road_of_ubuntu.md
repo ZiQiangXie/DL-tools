@@ -640,7 +640,9 @@ deb http://security.ubuntu.com/ubuntu focal-security main
 
 sudo apt-get install gcc-10-base
 
+#### 升级glibc
 
+https://blog.csdn.net/flysnow010/article/details/140157114
 
 
 
