@@ -123,6 +123,28 @@ https://blog.csdn.net/uniqueyyc/article/details/85407693
 
 
 
+### 驱动报错
+
+#### 报错1
+
+NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.
+
+1）nvidia-smi，输出如上报错
+
+2）nvcc -V，检查驱动和cuda
+
+3）ls /usr/src | grep nvidia，查看已经安装的驱动版本；
+
+​     输出示例：nvidia-535.183.06
+
+4）安装dkms： sudo apt-get install dkms
+
+​      配置驱动：sudo dkms install -m nvidia -v 535.183.06
+
+等待安装完成后，再次输入nvidia-smi，查看GPU使用状态。
+
+
+
 ### CUDA相关
 
 #### 1 安装
