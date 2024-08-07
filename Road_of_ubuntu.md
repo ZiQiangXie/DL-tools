@@ -593,7 +593,11 @@ https://download.openmmlab.com/mmcv/dist/cu92/torch1.7.0/index.html
 
 替换cu92、torch1.7.0，可以对应下载版本；
 
+pip install --default-timeout=10000 packagename
 
+ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.
+
+使用wget下载或其他方式下载whl包，然后再安装。
 
 
 

@@ -627,9 +627,15 @@ Typora 利用解析器先将我们写的 Markdown 文档解析成为 HTML 文档
 
 ### 2.10 LaTeX公式
 
-LaTeX的公式输入需要掌握格式和代码，熟练才能记忆。
+LaTeX的公式输入需要掌握格式和代码，熟练才能记忆。详见LaTeX公式大全.md。
 
+### 2.11 rst转md
 
+将rst转换为markdown格式。使用pandoc工具进行转换。
+代码：
+
+sudo apt install pandoc
+pandoc readme.rst -f rst -t markdown -o readme.md
 
 
 
