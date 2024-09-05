@@ -144,3 +144,37 @@ https://blog.csdn.net/weixin_42398658/article/details/121784380
 插件/扩展：
 
 历史版本下载参考：https://github.com/microsoft/vscode-python/discussions/20184
+
+
+
+调试
+
+launch.json配置。
+
+```python
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["xxx", "xxx"],
+            "env": {"CUDA_VISIBLE_DEVICES": "3", "FLAGS_set_to_1d": "False"}
+        }
+    ]
+}
+```
+
+说明：
+
+program：指定要运行的文件，可填相对路径，如 tools/train.py，是相对于当前工程的根目录。
+
+justMyCode：是否只在当前代码中调试，默认为true，改为false，可以进入调用的库中；
+
+args：可选，默认没有，该参数可以用于对要运行的文件传参，将实际运行时要用到的所有参数按照顺序写入；
+
+env：可选，默认没有，环境变量，该参数可以用于指定运行的环境变量，如通过 export 指定 GPU 等；
