@@ -588,7 +588,17 @@ conda install mpi4py
 sudo apt update
 sudo apt-get install libopenmpi-dev
 
+### pip 安装更新
 
+pip install xxx
+
+pip freeze
+
+pip install -U xxx   或者 pip install xxx --upgrade
+
+pip install --ignore-installed xxx
+
+pip install git+https://github.com/bitsandbytes-foundation/bitsandbytes.git
 
 ### 各种源地址
 
