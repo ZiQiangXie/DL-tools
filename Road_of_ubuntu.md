@@ -588,17 +588,7 @@ conda install mpi4py
 sudo apt update
 sudo apt-get install libopenmpi-dev
 
-### pip 安装更新
 
-pip install xxx
-
-pip freeze
-
-pip install -U xxx   或者 pip install xxx --upgrade
-
-pip install --ignore-installed xxx
-
-pip install git+https://github.com/bitsandbytes-foundation/bitsandbytes.git
 
 ### 各种源地址
 
@@ -615,7 +605,11 @@ pip install xxx -i Դ
 https://paddlepaddle.org.cn/whl/mkl/stable.html
 https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 
-torch、torchvision：https://download.pytorch.org/whl/torch_stable.html
+torch、torchvision：
+
+https://download.pytorch.org/whl/torch_stable.html 
+
+https://download.pytorch.org/whl/torch/   有最新版本torch
 
 mmcv:
 
@@ -630,6 +624,10 @@ pip install --default-timeout=10000 packagename
 ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.
 
 使用wget下载或其他方式下载whl包，然后再安装。
+
+pip install xxx --no-dependencies    不检查依赖
+
+pip install --upgrade triton  更新triton
 
 
 
