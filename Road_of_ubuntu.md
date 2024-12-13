@@ -625,11 +625,35 @@ ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.
 
 使用wget下载或其他方式下载whl包，然后再安装。
 
+### whl包安装
+
 pip install xxx --no-dependencies    不检查依赖
 
 pip install --upgrade triton  更新triton
 
+通过GitHub库的哈希值安装。
 
+方法一：pip install git+https://github.com/huggingface/transformers@21fac7abba2a37fae86106f87fcf9974fd1e3830
+
+注：此方法需要先卸载已经安装的transformers库，否则可能失败；
+
+方法二：
+
+git clone https://github.com/huggingface/transformers.git
+
+cd transformers
+
+git branch  查看分支
+
+git log   查看提交记录，包含哈希值，作者等各种信息，按Q键退出，如果已知哈希值可跳过此步骤；
+
+git checkout 哈希值     哈希值形如：21fac7abba2a37fae86106f87fcf9974fd1e3830
+
+python setup.py install  安装
+
+git checkout main   回到主分支
+
+【参考】https://blog.csdn.net/qq_39715000/article/details/123830029
 
 ### 系统库报错
 
