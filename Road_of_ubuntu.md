@@ -10,6 +10,8 @@ tar -xvJf  xxxx.tar.xz    # .xz结尾是打包后再压缩的文件，外面是x
 
 等价于：xz -d xxx.tar.xz    tar -xvf xxx.tar
 
+for tar in *.tar.gz;  do tar xvf $tar; done
+
 
 
 ### 代理相关
@@ -48,6 +50,12 @@ export https_proxy="http://192.168.0.1:8888"
 source ~/.bashrc
 
 支持Windows软件开启ie代理、http。
+
+
+
+另一种代理软件：squid，好像更好用。
+
+
 
 
 
