@@ -12,6 +12,18 @@ tar -xvJf  xxxx.tar.xz    # .xz结尾是打包后再压缩的文件，外面是x
 
 for tar in *.tar.gz;  do tar xvf $tar; done
 
+scp有空格路径问题。
+
+以路径/path1/path 2/path 3/path4为例，其中2级和3级路径包含空格。解决方法如下
+
+```python
+ scp -P <port> user@ip:"/path1/path\\ 2/path\\ 3/path4" .
+```
+
+
+
+
+
 
 
 ### 代理相关
