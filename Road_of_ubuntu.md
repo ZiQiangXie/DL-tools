@@ -22,9 +22,40 @@ scp有空格路径问题。
 
 
 
+### 内存虚拟硬盘
 
+1.用途举例
+在程序开发中需要对视频流进行连续不断的循环保存，后续处理对临时视频保存结果进行截取。如果选择保存到固态硬盘，连续擦写会迅速消耗固态硬盘使用寿命；如果选择机械硬盘，读写速度又会受到影响。
+因此使用内存构造一个虚拟的硬盘，即保护了固态硬盘又提升了读写速度。
 
+2.tmpfs简介
+在Linux系统中，tmpfs是一种虚拟内存文件系统，存储空间位于VM（Virtual Memory）之中。VM由RM（Real Memory）和swap构成。RM是实际的物理内存空间（内存条），swap为虚拟空间（硬盘），当tmpfs大小超过物理内存大小时，会使用swap，因此需要考虑申请存储空间大小。tmpfs默认大小是RM的一半。
 
+3.使用方法
+3.1.临时挂载
+首先创建根目录文件夹，路径根据个人需要设置，例如/home/user/ramdisk。
+
+mkdir /home/user/ramdisk
+
+之后进行tmpfs挂载，这里举例挂载100M的空间。
+
+sudo mount -t tmpfs -o size=100M tmpfs /home/user/ramdisk
+
+此时已经完成了内存虚拟硬盘的构造，可以使用df -h命令查看结果。
+
+该文件夹中存储的内容会在系统关机后自动消失。使用该方式构造的内存虚拟硬盘也会在系统重启后消失。如果不希望该内存虚拟硬盘消失，则需要对其进行启动自动挂载以达到长期挂载。
+
+3.2.长期挂载
+在/etc/fstab文件中增加挂载命令，可以实现系统启动时自动挂载。具体如下：
+
+sudo gedit /etc/fstab
+在文件中增加如下内容并保存。
+
+tmpfs	/home/user/ramdisk	tmpfs	defaults,size=100M	0 0
+之后执行sudo mount -a和df -h，确保tmpfs中挂载成功即完成。重启系统后，就会自动挂载。
+
+当不需要时，删除掉/etc/fstab中对应命令，保存重启即可。
+原文链接：https://blog.csdn.net/qq_29912325/article/details/108666516
 
 ### 代理相关
 
