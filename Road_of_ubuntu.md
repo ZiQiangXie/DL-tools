@@ -287,6 +287,8 @@ sudo sh ./cuda_10.2.89_440.33.01_linux.run --toolkitpath=/path/to/cuda/cuda-10.2
 
 https://developer.nvidia.cn/rdp/cudnn-archive
 
+https://developer.download.nvidia.cn/compute/cudnn/redist/cudnn/linux-x86_64/
+
 下载后解压缩，假设名字为cudnn_path。
 
 sudo cp cudnn_path/lib64/*  /path/to/cuda-10.2/lib64
